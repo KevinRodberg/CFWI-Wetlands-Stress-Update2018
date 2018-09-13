@@ -1,0 +1,213 @@
+SQL Statement which produced this data:
+  SELECT dk.dbkey, dk.station_id, dk.station, dk.data_type,
+     TO_CHAR (MIN (to_date(monthly,'YYYY/MM')), 'YYYY') AS START_YEAR,
+     TO_CHAR (MAX (to_date(monthly,'YYYY/MM')), 'YYYY') AS END_YEAR,
+     COUNT (*) AS CNT, ROUND (MAX (MMavg88), 3) AS MAXVAL,
+     ROUND (PERCENTILE_CONT (0.20) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P20",
+     ROUND (PERCENTILE_CONT (0.50) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P50",
+     ROUND (PERCENTILE_CONT (0.80) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P80"
+     FROM
+     (select d.dbkey, k.station_id, k.station, k.data_type,
+     TO_CHAR (d.daily_date,'YYYY/MM') AS monthly,
+     avg(d.VALUE88)  MMavg88 from 
+     DMDBASE.DM_DAILY_DATA_VW d, dmdbase.keyword_tab k
+     WHERE k.dbkey = d.dbkey
+     AND daily_date BETWEEN TO_DATE ('01/01/2006', 'MM/DD/YYYY') AND TO_DATE ('12/31/2011', 'MM/DD/YYYY')
+     AND d.dbkey IN ('FF825','FF826','FF830','FF831','FF832','FF833','FF834', 'FF835','FF836', 'PT431','PT433')
+     AND quality_code = 'A'
+     AND (code IS NULL OR code NOT IN ('M', 'N', 'PT', '?', 'U'))  
+     group by d.dbkey, k.station_id, k.station, k.data_type, TO_CHAR (d.daily_date,'YYYY/MM')) dk
+     GROUP BY dk.DBKEY, dk.STATION_ID, dk.STATION, dk.DATA_TYPE
+  union      SELECT dk.dbkey, dk.station_id, dk.station, dk.data_type,
+     TO_CHAR (MIN (to_date(monthly,'YYYY/MM')), 'YYYY') AS START_YEAR,
+     TO_CHAR (MAX (to_date(monthly,'YYYY/MM')), 'YYYY') AS END_YEAR,
+     COUNT (*) AS CNT, ROUND (MAX (MMavg88), 3) AS MAXVAL,
+     ROUND (PERCENTILE_CONT (0.20) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P20",
+     ROUND (PERCENTILE_CONT (0.50) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P50",
+     ROUND (PERCENTILE_CONT (0.80) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P80"
+     FROM
+     (select d.dbkey, k.station_id, k.station, k.data_type,
+     TO_CHAR (d.daily_date,'YYYY/MM') AS monthly,
+     avg(d.VALUE88)  MMavg88 from 
+     DMDBASE.DM_DAILY_DATA_VW d, dmdbase.keyword_tab k
+     WHERE k.dbkey = d.dbkey
+     AND daily_date BETWEEN TO_DATE ('01/01/2006', 'MM/DD/YYYY') AND TO_DATE ('12/31/2012', 'MM/DD/YYYY')
+     AND d.dbkey IN ('FF825','FF826','FF830','FF831','FF832','FF833','FF834', 'FF835','FF836', 'PT431','PT433')
+     AND quality_code = 'A'
+     AND (code IS NULL OR code NOT IN ('M', 'N', 'PT', '?', 'U'))  
+     group by d.dbkey, k.station_id, k.station, k.data_type, TO_CHAR (d.daily_date,'YYYY/MM')) dk
+     GROUP BY dk.DBKEY, dk.STATION_ID, dk.STATION, dk.DATA_TYPE
+  union      SELECT dk.dbkey, dk.station_id, dk.station, dk.data_type,
+     TO_CHAR (MIN (to_date(monthly,'YYYY/MM')), 'YYYY') AS START_YEAR,
+     TO_CHAR (MAX (to_date(monthly,'YYYY/MM')), 'YYYY') AS END_YEAR,
+     COUNT (*) AS CNT, ROUND (MAX (MMavg88), 3) AS MAXVAL,
+     ROUND (PERCENTILE_CONT (0.20) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P20",
+     ROUND (PERCENTILE_CONT (0.50) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P50",
+     ROUND (PERCENTILE_CONT (0.80) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P80"
+     FROM
+     (select d.dbkey, k.station_id, k.station, k.data_type,
+     TO_CHAR (d.daily_date,'YYYY/MM') AS monthly,
+     avg(d.VALUE88)  MMavg88 from 
+     DMDBASE.DM_DAILY_DATA_VW d, dmdbase.keyword_tab k
+     WHERE k.dbkey = d.dbkey
+     AND daily_date BETWEEN TO_DATE ('01/01/2006', 'MM/DD/YYYY') AND TO_DATE ('12/31/2013', 'MM/DD/YYYY')
+     AND d.dbkey IN ('FF825','FF826','FF830','FF831','FF832','FF833','FF834', 'FF835','FF836', 'PT431','PT433')
+     AND quality_code = 'A'
+     AND (code IS NULL OR code NOT IN ('M', 'N', 'PT', '?', 'U'))  
+     group by d.dbkey, k.station_id, k.station, k.data_type, TO_CHAR (d.daily_date,'YYYY/MM')) dk
+     GROUP BY dk.DBKEY, dk.STATION_ID, dk.STATION, dk.DATA_TYPE
+  union      SELECT dk.dbkey, dk.station_id, dk.station, dk.data_type,
+     TO_CHAR (MIN (to_date(monthly,'YYYY/MM')), 'YYYY') AS START_YEAR,
+     TO_CHAR (MAX (to_date(monthly,'YYYY/MM')), 'YYYY') AS END_YEAR,
+     COUNT (*) AS CNT, ROUND (MAX (MMavg88), 3) AS MAXVAL,
+     ROUND (PERCENTILE_CONT (0.20) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P20",
+     ROUND (PERCENTILE_CONT (0.50) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P50",
+     ROUND (PERCENTILE_CONT (0.80) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P80"
+     FROM
+     (select d.dbkey, k.station_id, k.station, k.data_type,
+     TO_CHAR (d.daily_date,'YYYY/MM') AS monthly,
+     avg(d.VALUE88)  MMavg88 from 
+     DMDBASE.DM_DAILY_DATA_VW d, dmdbase.keyword_tab k
+     WHERE k.dbkey = d.dbkey
+     AND daily_date BETWEEN TO_DATE ('01/01/2006', 'MM/DD/YYYY') AND TO_DATE ('12/31/2014', 'MM/DD/YYYY')
+     AND d.dbkey IN ('FF825','FF826','FF830','FF831','FF832','FF833','FF834', 'FF835','FF836', 'PT431','PT433')
+     AND quality_code = 'A'
+     AND (code IS NULL OR code NOT IN ('M', 'N', 'PT', '?', 'U'))  
+     group by d.dbkey, k.station_id, k.station, k.data_type, TO_CHAR (d.daily_date,'YYYY/MM')) dk
+     GROUP BY dk.DBKEY, dk.STATION_ID, dk.STATION, dk.DATA_TYPE
+  union      SELECT dk.dbkey, dk.station_id, dk.station, dk.data_type,
+     TO_CHAR (MIN (to_date(monthly,'YYYY/MM')), 'YYYY') AS START_YEAR,
+     TO_CHAR (MAX (to_date(monthly,'YYYY/MM')), 'YYYY') AS END_YEAR,
+     COUNT (*) AS CNT, ROUND (MAX (MMavg88), 3) AS MAXVAL,
+     ROUND (PERCENTILE_CONT (0.20) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P20",
+     ROUND (PERCENTILE_CONT (0.50) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P50",
+     ROUND (PERCENTILE_CONT (0.80) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P80"
+     FROM
+     (select d.dbkey, k.station_id, k.station, k.data_type,
+     TO_CHAR (d.daily_date,'YYYY/MM') AS monthly,
+     avg(d.VALUE88)  MMavg88 from 
+     DMDBASE.DM_DAILY_DATA_VW d, dmdbase.keyword_tab k
+     WHERE k.dbkey = d.dbkey
+     AND daily_date BETWEEN TO_DATE ('01/01/2006', 'MM/DD/YYYY') AND TO_DATE ('12/31/2015', 'MM/DD/YYYY')
+     AND d.dbkey IN ('FF825','FF826','FF830','FF831','FF832','FF833','FF834', 'FF835','FF836', 'PT431','PT433')
+     AND quality_code = 'A'
+     AND (code IS NULL OR code NOT IN ('M', 'N', 'PT', '?', 'U'))  
+     group by d.dbkey, k.station_id, k.station, k.data_type, TO_CHAR (d.daily_date,'YYYY/MM')) dk
+     GROUP BY dk.DBKEY, dk.STATION_ID, dk.STATION, dk.DATA_TYPE
+  union      SELECT dk.dbkey, dk.station_id, dk.station, dk.data_type,
+     TO_CHAR (MIN (to_date(monthly,'YYYY/MM')), 'YYYY') AS START_YEAR,
+     TO_CHAR (MAX (to_date(monthly,'YYYY/MM')), 'YYYY') AS END_YEAR,
+     COUNT (*) AS CNT, ROUND (MAX (MMavg88), 3) AS MAXVAL,
+     ROUND (PERCENTILE_CONT (0.20) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P20",
+     ROUND (PERCENTILE_CONT (0.50) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P50",
+     ROUND (PERCENTILE_CONT (0.80) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P80"
+     FROM
+     (select d.dbkey, k.station_id, k.station, k.data_type,
+     TO_CHAR (d.daily_date,'YYYY/MM') AS monthly,
+     avg(d.VALUE88)  MMavg88 from 
+     DMDBASE.DM_DAILY_DATA_VW d, dmdbase.keyword_tab k
+     WHERE k.dbkey = d.dbkey
+     AND daily_date BETWEEN TO_DATE ('01/01/2006', 'MM/DD/YYYY') AND TO_DATE ('12/31/2016', 'MM/DD/YYYY')
+     AND d.dbkey IN ('FF825','FF826','FF830','FF831','FF832','FF833','FF834', 'FF835','FF836', 'PT431','PT433')
+     AND quality_code = 'A'
+     AND (code IS NULL OR code NOT IN ('M', 'N', 'PT', '?', 'U'))  
+     group by d.dbkey, k.station_id, k.station, k.data_type, TO_CHAR (d.daily_date,'YYYY/MM')) dk
+     GROUP BY dk.DBKEY, dk.STATION_ID, dk.STATION, dk.DATA_TYPE
+  union      SELECT dk.dbkey, dk.station_id, dk.station, dk.data_type,
+     TO_CHAR (MIN (to_date(monthly,'YYYY/MM')), 'YYYY') AS START_YEAR,
+     TO_CHAR (MAX (to_date(monthly,'YYYY/MM')), 'YYYY') AS END_YEAR,
+     COUNT (*) AS CNT, ROUND (MAX (MMavg88), 3) AS MAXVAL,
+     ROUND (PERCENTILE_CONT (0.20) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P20",
+     ROUND (PERCENTILE_CONT (0.50) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P50",
+     ROUND (PERCENTILE_CONT (0.80) WITHIN GROUP (ORDER BY MMavg88 DESC), 3) AS "P80"
+     FROM
+     (select d.dbkey, k.station_id, k.station, k.data_type,
+     TO_CHAR (d.daily_date,'YYYY/MM') AS monthly,
+     avg(d.VALUE88)  MMavg88 from 
+     DMDBASE.DM_DAILY_DATA_VW d, dmdbase.keyword_tab k
+     WHERE k.dbkey = d.dbkey
+     AND daily_date BETWEEN TO_DATE ('01/01/2006', 'MM/DD/YYYY') AND TO_DATE ('12/31/2017', 'MM/DD/YYYY')
+     AND d.dbkey IN ('FF825','FF826','FF830','FF831','FF832','FF833','FF834', 'FF835','FF836', 'PT431','PT433')
+     AND quality_code = 'A'
+     AND (code IS NULL OR code NOT IN ('M', 'N', 'PT', '?', 'U'))  
+     group by d.dbkey, k.station_id, k.station, k.data_type, TO_CHAR (d.daily_date,'YYYY/MM')) dk
+     GROUP BY dk.DBKEY, dk.STATION_ID, dk.STATION, dk.DATA_TYPE;
+
+"DBKEY","STATION_ID","STATION","DATA_TYPE","START_YEAR","END_YEAR","CNT","MAXVAL","P20","P50","P80"
+"FF825","WR6+","WR6","STG","2006","2011",72,64.583,64.252,63.37,62.739
+"FF825","WR6+","WR6","STG","2006","2012",84,64.583,64.191,63.272,62.718
+"FF825","WR6+","WR6","STG","2006","2013",96,64.583,64.18,63.272,62.705
+"FF825","WR6+","WR6","STG","2006","2014",108,64.63,64.197,63.364,62.716
+"FF825","WR6+","WR6","STG","2006","2015",120,64.63,64.212,63.526,62.735
+"FF825","WR6+","WR6","STG","2006","2016",132,64.638,64.266,63.743,62.746
+"FF825","WR6+","WR6","STG","2006","2017",144,64.638,64.279,63.708,62.739
+"FF826","WR6+GW1","WR6_GW1","WELL","2006","2011",72,64.564,63.828,62.891,61.508
+"FF826","WR6+GW1","WR6_GW1","WELL","2006","2012",84,64.564,63.781,62.722,61.467
+"FF826","WR6+GW1","WR6_GW1","WELL","2006","2013",96,64.564,63.797,62.722,61.264
+"FF826","WR6+GW1","WR6_GW1","WELL","2006","2014",108,64.596,63.803,62.914,61.458
+"FF826","WR6+GW1","WR6_GW1","WELL","2006","2015",120,64.596,63.813,62.981,61.494
+"FF826","WR6+GW1","WR6_GW1","WELL","2006","2016",132,64.613,63.898,63.154,61.672
+"FF826","WR6+GW1","WR6_GW1","WELL","2006","2017",144,64.613,63.906,63.104,61.636
+"FF830","WR9+GW1","WR9_GW1","WELL","2006","2011",72,68.489,67.239,65.899,64.512
+"FF830","WR9+GW1","WR9_GW1","WELL","2006","2012",84,68.489,67.125,65.728,64.459
+"FF830","WR9+GW1","WR9_GW1","WELL","2006","2013",96,68.489,67.05,65.728,64.31
+"FF830","WR9+GW1","WR9_GW1","WELL","2006","2014",108,68.489,67.105,65.891,64.454
+"FF830","WR9+GW1","WR9_GW1","WELL","2006","2015",120,68.489,67.173,66.123,64.559
+"FF830","WR9+GW1","WR9_GW1","WELL","2006","2016",132,68.519,67.248,66.254,64.676
+"FF830","WR9+GW1","WR9_GW1","WELL","2006","2017",144,68.519,67.225,66.224,64.695
+"FF831","WR11+","WR11","STG","2006","2011",72,67.608,67.046,65.959,65.645
+"FF831","WR11+","WR11","STG","2006","2012",84,67.608,67.043,65.912,65.647
+"FF831","WR11+","WR11","STG","2006","2013",96,67.608,67.095,65.952,65.637
+"FF831","WR11+","WR11","STG","2006","2014",108,67.608,67.044,66.238,65.645
+"FF831","WR11+","WR11","STG","2006","2015",120,67.681,67.132,66.385,65.667
+"FF831","WR11+","WR11","STG","2006","2016",132,67.692,67.239,66.46,65.677
+"FF831","WR11+","WR11","STG","2006","2017",144,67.692,67.233,66.403,65.695
+"FF832","WR11+GW1","WR11_GW1","WELL","2006","2011",72,67.631,67.036,65.794,64.14
+"FF832","WR11+GW1","WR11_GW1","WELL","2006","2012",84,67.631,67.027,65.726,64.089
+"FF832","WR11+GW1","WR11_GW1","WELL","2006","2013",96,67.631,67.088,65.726,64.1
+"FF832","WR11+GW1","WR11_GW1","WELL","2006","2014",108,67.631,67.032,65.963,64.213
+"FF832","WR11+GW1","WR11_GW1","WELL","2006","2015",120,67.687,67.126,66.288,64.4
+"FF832","WR11+GW1","WR11_GW1","WELL","2006","2016",132,67.687,67.266,66.425,64.711
+"FF832","WR11+GW1","WR11_GW1","WELL","2006","2017",144,67.687,67.193,66.327,64.731
+"FF833","WR15+","WR15","STG","2006","2011",72,63.593,62.758,61.621,61.492
+"FF833","WR15+","WR15","STG","2006","2012",84,63.593,62.744,61.595,61.495
+"FF833","WR15+","WR15","STG","2006","2013",96,63.593,62.824,61.603,61.491
+"FF833","WR15+","WR15","STG","2006","2014",108,63.593,62.854,61.898,61.5
+"FF833","WR15+","WR15","STG","2006","2015",120,63.593,63.042,62.114,61.508
+"FF833","WR15+","WR15","STG","2006","2016",132,63.593,63.233,62.256,61.517
+"FF833","WR15+","WR15","STG","2006","2017",144,63.593,63.122,62.162,61.515
+"FF834","WR15+GW1","WR15_GW1","WELL","2006","2011",72,63.568,62.668,60.996,59.562
+"FF834","WR15+GW1","WR15_GW1","WELL","2006","2012",84,63.568,62.655,60.996,59.513
+"FF834","WR15+GW1","WR15_GW1","WELL","2006","2013",96,63.568,62.697,61.006,59.55
+"FF834","WR15+GW1","WR15_GW1","WELL","2006","2014",108,63.568,62.704,61.545,59.62
+"FF834","WR15+GW1","WR15_GW1","WELL","2006","2015",120,63.568,62.87,61.899,59.878
+"FF834","WR15+GW1","WR15_GW1","WELL","2006","2016",132,63.568,63.075,62.117,60.078
+"FF834","WR15+GW1","WR15_GW1","WELL","2006","2017",144,63.568,63.017,61.974,60.107
+"FF835","WR16+","WR16","STG","2006","2011",72,65.917,65.112,64.405,64.296
+"FF835","WR16+","WR16","STG","2006","2012",84,65.944,65.101,64.393,64.286
+"FF835","WR16+","WR16","STG","2006","2013",96,65.944,65.223,64.397,64.291
+"FF835","WR16+","WR16","STG","2006","2014",108,65.944,65.188,64.476,64.3
+"FF835","WR16+","WR16","STG","2006","2015",120,66,65.34,64.588,64.312
+"FF835","WR16+","WR16","STG","2006","2016",132,66,65.516,64.682,64.321
+"FF835","WR16+","WR16","STG","2006","2017",144,66,65.492,64.588,64.312
+"FF836","WR16+GW1","WR16_GW1","WELL","2006","2011",72,65.91,64.952,63.27,61.725
+"FF836","WR16+GW1","WR16_GW1","WELL","2006","2012",84,65.91,64.918,63.27,61.706
+"FF836","WR16+GW1","WR16_GW1","WELL","2006","2013",96,65.91,65.001,63.27,61.709
+"FF836","WR16+GW1","WR16_GW1","WELL","2006","2014",108,65.91,64.998,63.743,61.78
+"FF836","WR16+GW1","WR16_GW1","WELL","2006","2015",120,65.91,65.093,64.145,61.915
+"FF836","WR16+GW1","WR16_GW1","WELL","2006","2016",132,65.91,65.348,64.192,62.351
+"FF836","WR16+GW1","WR16_GW1","WELL","2006","2017",144,65.91,65.239,64.17,62.376
+"PT431","TB2+GW1","TB2_GW1","WELL","2006","2011",70,100.676,99.799,99.152,98.669
+"PT431","TB2+GW1","TB2_GW1","WELL","2006","2012",82,100.676,99.816,99.152,98.516
+"PT431","TB2+GW1","TB2_GW1","WELL","2006","2013",94,100.676,99.876,99.164,98.54
+"PT431","TB2+GW1","TB2_GW1","WELL","2006","2014",106,100.676,99.888,99.25,98.68
+"PT431","TB2+GW1","TB2_GW1","WELL","2006","2015",118,100.676,99.951,99.352,98.709
+"PT431","TB2+GW1","TB2_GW1","WELL","2006","2016",130,100.676,99.949,99.374,98.731
+"PT431","TB2+GW1","TB2_GW1","WELL","2006","2017",142,100.841,99.985,99.378,98.733
+"PT433","TB2+GW2","TB2_GW2","WELL","2006","2011",70,100.512,99.683,99.012,98.582
+"PT433","TB2+GW2","TB2_GW2","WELL","2006","2012",82,100.512,99.668,99.012,98.466
+"PT433","TB2+GW2","TB2_GW2","WELL","2006","2013",94,100.512,99.769,99.036,98.472
+"PT433","TB2+GW2","TB2_GW2","WELL","2006","2014",106,100.512,99.782,99.143,98.602
+"PT433","TB2+GW2","TB2_GW2","WELL","2006","2015",118,100.512,99.835,99.281,98.678
+"PT433","TB2+GW2","TB2_GW2","WELL","2006","2016",130,100.512,99.829,99.294,98.704
+"PT433","TB2+GW2","TB2_GW2","WELL","2006","2017",142,100.715,99.865,99.295,98.713
