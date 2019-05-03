@@ -1,0 +1,4 @@
+Wetland Type,Urban Density,Dissimilarity Factor,SHA Factor,SFusFraction,SFsuFraction,Sfus,Sfsu
+Plain,low,0.694,0.82,0.824,0.176,0.469,0.1
+Plain,Mod & High,0.616,0.581,0.824,0.176,0.295,0.063
+Ridge,All,0.671,1,0.581,0.419,0.39,0.281

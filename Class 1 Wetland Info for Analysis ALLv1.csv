@@ -1,0 +1,61 @@
+CFCA/EMT ID,Site Name,Original Status Assessment,Stress Status in 2018,Physiographic Region,Wetland Type,Hydrologically Altered,Edge Reference Elevation (ft NGVD 29),Conversion Factor to NAVD 88,Edge Reference Elevation (ft NAVD 88),Longitude,Latitude,Urban Density
+SF-LA,Walker Ranch - WR11,Not Stressed,Not Stressed,Plain,1A,No,67.68,-1.08,66.6,-81.404507,28.083626,Low
+SF-LB,Walker Ranch - WR6,Not Stressed,Not Stressed,Plain,1A,No,64.47,-1.05,63.42,-81.412562,28.113903,Low 
+SF-N1,Walker Ranch WR-16,NA,Not Stressed,Plain,1A,No,64.8,-1.09,63.71,-81.392284,28.077793,Low 
+SF-N2,Walker Ranch WR-15,NA,Not Stressed,Plain,1A,No,64.14,-1.09,63.05,-81.390062,28.082236,Low 
+SF-WT,Split Oak,NA,Stressed,Plain,1A,No,NA,NA,68.45,-81.20890235,28.3584259,Moderate
+SF-XZ,Walker Ranch - WR9,Not Stressed,Not Stressed,Plain,1A,No,68.34,-1.05,67.29,-81.418795,28.109258,Low 
+SF-YK,Tibet Butler,Stressed,Not Stressed,Plain,1A,No,101.57,-0.87,100.70,-81.537112,28.446165,Moderate
+SJ-AJ,Lake Gem,Stressed,Not Stressed,Plain,1E,Yes,53.39,-1.07,52.32,-81.207313,28.645854,High
+SJ-GA,Prairie Lake,NA,Stressed,Ridge,1F,No,NA,NA,78.53,-81.5113,28.59775,High
+SJ-LA,Unnamed Cypress,Not Stressed,Not Stressed,Plain,1A,No,70.44,-1.09,69.35,-81.1197,28.566632,Moderate
+SJ-LB,Unnamed Wetland Nr SR 46,Stressed,Stressed,Ridge,1E,No,69.37,-1.02,68.35,-81.360359,28.810519,High
+SJ-LC,Boggy Marsh,Stressed,Stressed,Plain,1A,No,118.82,-0.86,117.96,-81.697514,28.39695,Moderate
+SJ-LD,Hopkins Prairie,Not Stressed,Not Stressed,Ridge,1F,No,27.5,-1.01,26.49,-81.693251,29.27491,Low
+SJ-LE,Lake Avalon,Stressed,Stressed,Ridge,1F,No,96.68,-0.88,95.8,-81.64274,28.51018,High
+SJ-LF,Lake Apshawa,Stressed,Stressed,Ridge,1F,No,87.65,-0.89,86.76,-81.77333,28.59964,Moderate
+SJ-LH,Island Lake,Stressed,Not Stressed,Plain,2A-M,No,87.49,-1.04,86.45,-81.363091,28.696596,High
+SJ-LI,Lake Sylvan,Not Stressed,Stressed,Plain,1E,No,NA,NA,42.01,-81.379811,28.803797,Low
+SJ-LJ,Lake Louisa,NA,Stressed,Ridge,2F,No,97.29,-0.87,96.42,-81.74695,28.46346,Moderate
+SJ-LL,"City of Cocoa, Well 9T",Not Stressed,Not Stressed,Plain,2D,No,74.14,-1.14,73,-81.053314,28.394303,Low
+SJ-N1,Red Bug Lake,NA,Stressed,Plain,1E,No,69.61,-1.06,68.55,-81.290839,28.648639,Moderate
+SJ-N2,Chapman Marsh,NA,Stressed,Plain,2A-M,No,66.96,-1.07,65.89,-81.193906,28.641028,Moderate
+SJ-QA,Church Lake,Stressed,Stressed,Ridge,1F,Yes,90.37,-0.88,89.49,-81.841699,28.644937,Moderate
+SJ-QB,Johns Lake,Not Stressed,Not Stressed,Ridge,1F,No,97.42,-0.88,96.54,-81.657585,28.531825,High
+SJ-QC,Trout Lake,Not Stressed,Not Stressed,Ridge,1F,No,97.6,-0.86,96.74,-81.712212,28.447999,Moderate
+SJ-EV,Long Lake,Stressed,Stressed,Ridge,1F,No,68.81,-0.93,67.88,-81.469958,28.617014,High
+SW-AA,Green Swamp #7,Not Stressed,Not Stressed,Plain,1A,No,NA,NA,105.95,-81.911111,28.312611,Low
+SW-JJ,Lake Garfield,Not Stressed,Not Stressed,Ridge,1F,Yes,105.53,-0.9,104.63,-81.72341,27.90086,Moderate
+SW-LE,"Cypress Creek #199, W17 Sentry Wetland",Stressed,Stressed,Plain,1A,No,64.95,-0.88,64.07,-82.394478,28.286128,Moderate
+SW-LF,Cypress Creek #190 E Marsh,Stressed,Not Stressed,Plain,2A-M,No,72.03,-0.8,71.23,-82.378218,28.304856,Moderate
+SW-LG,Cypress Creek #223 B  W46,Stressed,Stressed,Plain,1A,No,68.93,-0.82,68.11,-82.391208,28.290439,Moderate
+SW-LH,Cypress Creek #211 W33,Stressed,Not Stressed,Plain,2A-M,No,70.79,-0.82,69.97,-82.393056,28.276317,Moderate
+SW-LI,Green Swamp Marsh #304,Not Stressed,Not Stressed,Plain,1A,No,93.9,-1.02,92.88,-82.01789,28.354863,Low
+SW-LJ,"Green Swamp #6, #303",Not Stressed,Not Stressed,Plain,1A,No,98.1,-0.85,97.25,-81.97126,28.39456,Low
+SW-LK,"Green Swamp #5, #302",Not Stressed,Not Stressed,Plain,1A,No,98.8,-1,97.8,-82.018658,28.368859,Low
+SW-LM,"Green Swamp #1, #298",Not Stressed,Not Stressed,Plain,1A,No,100.6,-0.79,99.81,-81.946755,28.36141,Low
+SW-MM,Lake Wales,Stressed,Not Stressed,Ridge,1F,No,111.35,-0.97,110.38,-81.57869,27.90391,Moderate
+SW-N1,Green Swamp Bay,NA,Not Stressed,Plain,2A-M,No,NA,NA,100.83,-81.9537,28.4218,Low
+SW-N2,Green Swamp #4,NA,Not Stressed,Plain,1A,No,NA,NA,102.01,-81.9311,28.3919,Low
+SW-N3,Alston Bay,NA,Not Stressed,Plain,2A-M,No,NA,NA,98.4,-82.0906,28.1804,Low
+SW-N4,NE Lakeland Wellfield G,NA,Not Stressed,Plain,2A-M,No,NA,NA,134.32,-81.9027796,28.17035396,Moderate
+SW-N5,NE Lakeland Wellfield J,NA,Not Stressed,Plain,2A-M,No,NA,NA,134.16,-81.8883,28.1652,Moderate
+SW-N6,NE Lakeland Wellfield K,NA,Not Stressed,Plain,1A,No,NA,NA,134.43,-81.8962,28.161,Moderate
+SW-N7,Van Fleet #2,NA,Not Stressed,Plain,1A,No,126.7,-0.86,125.84,-81.6634,28.2422,High
+SW-N8,Saddle Blanket Scrub #2,NA,Not Stressed,Ridge,1B,No,120.1,-0.991,119.11,-81.5788,27.6706,Low
+SW-N9,"LWRWEA, Mountain Lake Cutoff Tract #1",NA,Stressed,Ridge,1B,No,NA,NA,129.33,-81.5939,27.9198,High
+SW-QA,Big Gum Lake,Stressed,Not Stressed,Ridge,1F,Yes,95.95,-0.78,95.17,-81.492193,27.928229,Low
+SW-QB,Bonnet Lake,Not Stressed,Not Stressed,Ridge,1F,No,92.04,-1.15,90.89,-81.438926,27.546476,Low
+SW-QC,Buck Lake,Not Stressed,Not Stressed,Ridge,1F,No,95.05,-1.42,93.63,-81.332671,27.234785,Moderate
+SW-QD,Gator Lake,Not Stressed,Stressed,Ridge,1F,No,131.8,-0.58,131.22,-81.686616,27.841225,Low 
+SW-QE,Lake Annie,Not Stressed,Not Stressed,Ridge,1F,No,111.49,-1.2,110.29,-81.351758,27.205947,Low
+SW-QF,Lake Apthorpe,Not Stressed,Not Stressed,Ridge,1F,Yes,71.28,-1.18,70.1,-81.362716,27.34429,Low 
+SW-QH,Lake Leonore,Not Stressed,Not Stressed,Ridge,1F,No,86.23,-1.06,85.17,-81.512255,27.793753,Low 
+SW-QI,Lake Placid,Not Stressed,Not Stressed,Ridge,1F,No,94.91,-1.12,93.79,-81.364219,27.244505,Moderate
+SW-QJ,Lake Streety,Not Stressed,Not Stressed,Ridge,1F,No,105.95,-0.89,105.06,-81.569989,27.678406,Low
+SW-QK,Lake Van,Not Stressed,Not Stressed,Ridge,1F,No,134.32,-1.01,133.31,-81.768938,28.10715,Low
+SW-QL,Lake Walker,Stressed,Stressed,Ridge,1F,No,150.28,-1.11,149.17,-81.717885,27.853656,Moderate
+SW-QM,Polecat Lake,Stressed,Not Stressed,Ridge,1F,No,144.37,-0.85,143.52,-81.699882,27.843913,Low
+SW-QN,Surveyors Lake,Not Stressed,Not Stressed,Ridge,1F,No,133.36,-0.93,132.44,-81.691552,27.83397,Low
+SW-QO,Parks Lake,Not Stressed,Not Stressed,Ridge,1F,No,102.81,-0.95,101.86,-81.46841,27.9157,Low
+SW-QQ,Crooked Lake,Stressed,Not Stressed,Ridge,1F,Yes,121.29,-1.03,120.26,-81.55303,27.82797,Low
