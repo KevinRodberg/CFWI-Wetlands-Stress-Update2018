@@ -472,7 +472,3 @@ write.csv(file=paste0(workdir,'/Wetlands.csv'),Wetlands)
 wideTheta <- dcast(thetas,EMT_ID~rank,value.var='theta',mean)
 thetaEval <- merge(wideTheta,Class1P80[,c(1,3,4,5,11)], by.x='EMT_ID', by.y = "CFCA/EMT ID")
 write.csv(file=paste0(workdir,'/thetas4Eval.csv'),thetaEval)
-
-
-
-

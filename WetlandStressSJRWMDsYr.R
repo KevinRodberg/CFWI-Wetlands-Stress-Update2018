@@ -86,7 +86,7 @@ PivotPranks <- NULL
 for (yr in seq(start,end)){
   ich = paste0(yr,'-2017')
   qStations <- AllStations_SJ[!is.na(AllStations_SJ$approx) & 
-                             AllStations_SJ$DATE >= as.Date(paste0(yr,'-01-01')),]
+                                AllStations_SJ$DATE >= as.Date(paste0(yr,'-01-01')),]
   QByYr<-as.data.table(qStations)[,as.list(quantile(approx,probs=c(.2, .5))), by=STATION]
   
   names(QByYr)= c("STATION","P80","P50")

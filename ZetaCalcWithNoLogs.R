@@ -1,4 +1,3 @@
-
 list.of.pkgs <-  c("readr","dplyr","zoo","ggplot2", "reshape2", "data.table",
                    "future","listenv","readxl","purrr","e1071" ,"rcompanion","tictoc")
 
@@ -310,5 +309,3 @@ OrigwideTheta<- dcast(thetas,EMT_ID~rank,value.var='theta',mean)
 OrigTheta <-merge(OrigwideTheta,Class1P80[,c(1,3,4,5,10,11,12)], by.x='EMT_ID', by.y = "CFCA/EMT ID")
 
 workdir= "Y:/proj/CFWI_WetlandStress/Update2018"
-
-

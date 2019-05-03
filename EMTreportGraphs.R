@@ -80,4 +80,3 @@ for (phys in unique(AllStations$Phys)){
            stress,phys)
   }
 }
-

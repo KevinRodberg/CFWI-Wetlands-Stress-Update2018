@@ -1,57 +1,57 @@
-"","EMT_ID","2009-2017_P80","Site Name","Original Status Assessment","...5","Conversion Factor to NAVD 88"
-"1","SF-LA",2.49000000000001,"Walker Ranch - WR11","Not Stressed",NA,-1.08
-"2","SF-LB",2.66,"Walker Ranch - WR6","Not Stressed",NA,-1.05
-"3","SF-N1",1.95999999999999,"Walker Ranch WR-16",NA,NA,-1.09
-"4","SF-N2",3.48,"Walker Ranch WR-15",NA,NA,-1.09
-"5","SF-WT",3.408,"Split Oak",NA,NA,NA
-"6","SF-XZ",3.47000000000001,"Walker Ranch - WR9","Not Stressed",NA,-1.05
-"7","SF-YK",2.69,"Tibet Butler","Stressed",NA,-0.86999999999999
-"8","SJ-EV",9.99267878787879,"Long Lake","Stressed",NA,-0.93
-"9","SJ-LA",1.34699999999999,"Unnamed Cypress","Not Stressed",NA,-1.09
-"10","SJ-LB",9.6695465714286,"Unnamed Wetland Nr SR 46","Stressed",NA,-1.02
-"11","SJ-LC",2.344096256684,"Boggy Marsh","Stressed",NA,-0.86
-"12","SJ-LD",6.3290562770563,"Hopkins Prairie","Not Stressed","Outside ECFTX",-1.01
-"13","SJ-LE",10.3401176470588,"Lake Avalon","Stressed",NA,-0.88
-"14","SJ-LF",7.0631578947368,"Lake Apshawa","Stressed",NA,-0.89
-"15","SJ-LI",5.98999999999999,"Lake Sylvan","Not Stressed",NA,NA
-"16","SJ-LJ",5.05690384281,"Lake Louisa",NA,NA,-0.87
-"17","SJ-LL",1.804404640077,"City of Cocoa, Well 9T","Not Stressed",NA,-1.14
-"18","SJ-N1",3.23999999999999,"Red Bug Lake",NA,NA,-1.06
-"19","SJ-N2",2.6323269825761,"Chapman Marsh",NA,NA,-1.07
-"20","SJ-QA",7.869,"Church Lake","Stressed",NA,-0.879
-"21","SJ-QB",3.53616942585421,"Johns Lake","Not Stressed",NA,-0.88
-"22","SJ-QC",8.17085057471269,"Trout Lake","Not Stressed",NA,-0.86
-"23","SW-AA",1.573333333333,"Green Swamp #7","Not Stressed",NA,NA
-"24","SW-JJ",3.96097560975599,"Lake Garfield","Not Stressed",NA,-0.9
-"25","SW-LE",4.82614285714291,"Cypress Creek #199, W17 Sentry Wetland","Stressed","Outside CFWI",-0.88
-"26","SW-LG",5.76657142857141,"Cypress Creek #223 B  W46","Stressed","Outside CFWI",-0.82
-"27","SW-LH",4.11840000000001,"Cypress Creek #211 W33","Stressed","Outside CFWI",-0.82
-"28","SW-LI",2.53130434782611,"Green Swamp Marsh #304","Not Stressed","Outside CFWI",-1.02
-"29","SW-LJ",2.46882352941179,"Green Swamp #6, #303","Not Stressed","Outside CFWI",-0.85
-"30","SW-LK",2.1964674329502,"Green Swamp #5, #302","Not Stressed","Outside CFWI",-1
-"31","SW-LM",2.09228571428569,"Green Swamp #1, #298","Not Stressed",NA,-0.79
-"32","SW-MM",8.670342857143,"Lake Wales","Stressed",NA,-0.97
-"33","SW-N1",2.34397402597399,"Green Swamp Bay",NA,NA,NA
-"34","SW-N2",2.4900261437908,"Green Swamp #4",NA,NA,NA
-"35","SW-N3",2.37700000000001,"Alston Bay",NA,NA,NA
-"36","SW-N4",5.54071428571399,"NE Lakeland Wellfield G",NA,NA,NA
-"37","SW-N5",5.33614285714299,"NE Lakeland Wellfield J",NA,NA,NA
-"38","SW-N6",5.12900000000002,"NE Lakeland Wellfield K",NA,NA,NA
-"39","SW-N7",1.48106015037601,"Van Fleet #2",NA,NA,-0.86
-"40","SW-N8",5.06399999999999,"Saddle Blanket Scrub #2",NA,NA,-0.991
-"41","SW-N9",7.96000000000001,"Lake Wales Ridge Wildlife and Environmental Area, Mountain Lake Cutoff Tract #1",NA,NA,NA
-"42","SW-QA",3.2302854851644,"Big Gum Lake","Stressed",NA,-0.78
-"43","SW-QB",2.47496078431369,"Bonnet Lake","Not Stressed","Outside CFWI",-1.15
-"44","SW-QC",4.64999999999999,"Buck Lake","Not Stressed","Outside CFWI",-1.42
-"45","SW-QD",1.13884369747899,"Gator Lake","Not Stressed",NA,-0.58
-"46","SW-QE",1.37860714285699,"Lake Annie","Not Stressed","Outside CFWI",-1.2
-"47","SW-QF",2.16133333333329,"Lake Apthorpe","Not Stressed","Outside CFWI",-1.18
-"48","SW-QH",0.915714285714301,"Lake Leonore","Not Stressed",NA,-1.06
-"49","SW-QI",5.18924031007749,"Lake Placid","Not Stressed","Outside CFWI",-1.12
-"50","SW-QJ",2.368055555556,"Lake Streety","Not Stressed",NA,-0.89
-"51","SW-QK",2.29533333333299,"Lake Van","Not Stressed",NA,-1.01
-"52","SW-QL",12.301142857143,"Lake Walker","Stressed",NA,-1.11
-"53","SW-QM",3.59021700879802,"Polecat Lake","Stressed",NA,-0.85
-"54","SW-QN",2.43763571428599,"Surveyors Lake","Not Stressed",NA,-0.925
-"55","SW-QO",2.6192931034483,"Parks Lake","Not Stressed",NA,-0.95
-"56","SW-QQ",6.391862433862,"Crooked Lake","Stressed",NA,-1.03
+,EMT_ID,2009-2017_P80,Site Name,Original Status Assessment,...5,Conversion Factor to NAVD 88
+1,SF-LA,2.49,Walker Ranch - WR11,Not Stressed,NA,-1.08
+2,SF-LB,2.66,Walker Ranch - WR6,Not Stressed,NA,-1.05
+3,SF-N1,1.96,Walker Ranch WR-16,NA,NA,-1.09
+4,SF-N2,3.48,Walker Ranch WR-15,NA,NA,-1.09
+5,SF-WT,3.408,Split Oak,NA,NA,NA
+6,SF-XZ,3.47,Walker Ranch - WR9,Not Stressed,NA,-1.05
+7,SF-YK,2.69,Tibet Butler,Stressed,NA,-0.87
+8,SJ-EV,9.992678788,Long Lake,Stressed,NA,-0.93
+9,SJ-LA,1.347,Unnamed Cypress,Not Stressed,NA,-1.09
+10,SJ-LB,9.669546571,Unnamed Wetland Nr SR 46,Stressed,NA,-1.02
+11,SJ-LC,2.344096257,Boggy Marsh,Stressed,NA,-0.86
+12,SJ-LD,6.329056277,Hopkins Prairie,Not Stressed,Outside ECFTX,-1.01
+13,SJ-LE,10.34011765,Lake Avalon,Stressed,NA,-0.88
+14,SJ-LF,7.063157895,Lake Apshawa,Stressed,NA,-0.89
+15,SJ-LI,5.99,Lake Sylvan,Not Stressed,NA,NA
+16,SJ-LJ,5.056903843,Lake Louisa,NA,NA,-0.87
+17,SJ-LL,1.80440464,"City of Cocoa, Well 9T",Not Stressed,NA,-1.14
+18,SJ-N1,3.24,Red Bug Lake,NA,NA,-1.06
+19,SJ-N2,2.632326983,Chapman Marsh,NA,NA,-1.07
+20,SJ-QA,7.869,Church Lake,Stressed,NA,-0.879
+21,SJ-QB,3.536169426,Johns Lake,Not Stressed,NA,-0.88
+22,SJ-QC,8.170850575,Trout Lake,Not Stressed,NA,-0.86
+23,SW-AA,1.573333333,Green Swamp #7,Not Stressed,NA,NA
+24,SW-JJ,3.96097561,Lake Garfield,Not Stressed,NA,-0.9
+25,SW-LE,4.826142857,"Cypress Creek #199, W17 Sentry Wetland",Stressed,Outside CFWI,-0.88
+26,SW-LG,5.766571429,Cypress Creek #223 B  W46,Stressed,Outside CFWI,-0.82
+27,SW-LH,4.1184,Cypress Creek #211 W33,Stressed,Outside CFWI,-0.82
+28,SW-LI,2.531304348,Green Swamp Marsh #304,Not Stressed,Outside CFWI,-1.02
+29,SW-LJ,2.468823529,"Green Swamp #6, #303",Not Stressed,Outside CFWI,-0.85
+30,SW-LK,2.196467433,"Green Swamp #5, #302",Not Stressed,Outside CFWI,-1
+31,SW-LM,2.092285714,"Green Swamp #1, #298",Not Stressed,NA,-0.79
+32,SW-MM,8.670342857,Lake Wales,Stressed,NA,-0.97
+33,SW-N1,2.343974026,Green Swamp Bay,NA,NA,NA
+34,SW-N2,2.490026144,Green Swamp #4,NA,NA,NA
+35,SW-N3,2.377,Alston Bay,NA,NA,NA
+36,SW-N4,5.540714286,NE Lakeland Wellfield G,NA,NA,NA
+37,SW-N5,5.336142857,NE Lakeland Wellfield J,NA,NA,NA
+38,SW-N6,5.129,NE Lakeland Wellfield K,NA,NA,NA
+39,SW-N7,1.48106015,Van Fleet #2,NA,NA,-0.86
+40,SW-N8,5.064,Saddle Blanket Scrub #2,NA,NA,-0.991
+41,SW-N9,7.96,"Lake Wales Ridge Wildlife and Environmental Area, Mountain Lake Cutoff Tract #1",NA,NA,NA
+42,SW-QA,3.230285485,Big Gum Lake,Stressed,NA,-0.78
+43,SW-QB,2.474960784,Bonnet Lake,Not Stressed,Outside CFWI,-1.15
+44,SW-QC,4.65,Buck Lake,Not Stressed,Outside CFWI,-1.42
+45,SW-QD,1.138843697,Gator Lake,Not Stressed,NA,-0.58
+46,SW-QE,1.378607143,Lake Annie,Not Stressed,Outside CFWI,-1.2
+47,SW-QF,2.161333333,Lake Apthorpe,Not Stressed,Outside CFWI,-1.18
+48,SW-QH,0.915714286,Lake Leonore,Not Stressed,NA,-1.06
+49,SW-QI,5.18924031,Lake Placid,Not Stressed,Outside CFWI,-1.12
+50,SW-QJ,2.368055556,Lake Streety,Not Stressed,NA,-0.89
+51,SW-QK,2.295333333,Lake Van,Not Stressed,NA,-1.01
+52,SW-QL,12.30114286,Lake Walker,Stressed,NA,-1.11
+53,SW-QM,3.590217009,Polecat Lake,Stressed,NA,-0.85
+54,SW-QN,2.437635714,Surveyors Lake,Not Stressed,NA,-0.925
+55,SW-QO,2.619293103,Parks Lake,Not Stressed,NA,-0.95
+56,SW-QQ,6.391862434,Crooked Lake,Stressed,NA,-1.03
