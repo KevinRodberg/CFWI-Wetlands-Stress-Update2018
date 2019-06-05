@@ -198,6 +198,24 @@ names(Ridge) <-c('theta')
 Ridge[newColumns]<-0.0
 Ridge$phys <- "Ridge"
 
+
+plotPDF <- function (filename,wetLData, Mean,SD , phys, stress) {
+  graphics.off()
+  subtitleString <-paste0("for ",stress,' ',phys," as a function of Hydrologic Index ")
+  ggplot(data=wetLData, aes(x=theta)) +    
+  xlab(expression(paste("Hydrologic Index ", theta, " feet"))) +
+    ylab("Probability Density") +
+  stat_function(fun=dnorm, args = list(mean=Mean, sd=SD))+
+  theme(legend.position="bottom") +
+    # xlim(-10, 20) +
+  scale_x_continuous(breaks = c(seq(-10,20,2.5)), limits = c(-10,20)) +
+  # labs(title =expression(atop("Fitted Normal Distribution Probability Density Function" ,
+  #                             bquote(.(subtitleString)~ {Delta*theta},")"))))
+    labs(title ="Fitted Normal Distribution Probability Density Function",
+                       subtitle= bquote(~ .(subtitleString) ~  theta))
+  ggsave(filename=fileName,width=10,height=6.66,units="in",dpi=300)
+  
+}
 Wetlands <-rbind(Plain,Ridge)
 
 #==================================================================================================
@@ -210,12 +228,17 @@ for (phys in physVec) {
     # 2014 values: Mean <- 5.18 SD <- 1.75 vs 2019 values:
     cat(paste("Stressed",phys,'Mean=',round(Mean,2),'StdDev=',round(SD,4)),'\n')
     Wetlands[Wetlands$phys == phys,]$Ps <- dnorm(Wetlands[Wetlands$phys == phys,]$theta, Mean, SD)
+    fileName = paste0('C:\\Users\\krodberg\\Desktop\\Stressed_',phys,'_pdf.png')
+    plotPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean, SD, phys, "Stressed")
     
     Mean <- max(thetas[thetas$Stress =="Not Stressed" & thetas$phys==phys,]$mean)
     SD   <- max(thetas[thetas$Stress =="Not Stressed" & thetas$phys==phys,]$sd)
     # 2014 values: Mean <- 2.73 SD <- 0.95 vs 2019 values:
     cat(paste("Not Stressed",phys,'Mean=',round(Mean,2),'StdDev=',round(SD,4)),'\n')
     Wetlands[Wetlands$phys == phys,]$Pu <- dnorm((Wetlands[Wetlands$phys == phys,]$theta), Mean, SD)
+    fileName = paste0('C:\\Users\\krodberg\\Desktop\\NotStressed_',phys,'_pdf.png')
+    plotPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean, SD, phys, "Not Stressed")
+    
   }
   else if (phys == 'Ridge')
   {
@@ -224,12 +247,17 @@ for (phys in physVec) {
     # 2014 values: Mean <- 7.86  SD <- 2.55 vs 2019 values:
     cat(paste("Stressed",phys,'Mean=',round(Mean,2),'StdDev=',round(SD,4)),'\n')
     Wetlands[Wetlands$phys == phys,]$Ps <- dnorm(Wetlands[Wetlands$phys == phys,]$theta,Mean, SD)
-
+    fileName = paste0('C:\\Users\\krodberg\\Desktop\\Stressed_',phys,'_pdf.png')
+    plotPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean, SD, phys, "Stressed")
+    
     Mean <- max(thetas[thetas$Stress =="Not Stressed" & thetas$phys==phys,]$mean)
     SD   <- max(thetas[thetas$Stress =="Not Stressed" & thetas$phys==phys,]$sd)
     # 2014 values:  Mean <- 3.42  SD <- 1.57 vs 2019 values:
     cat(paste("Not Stressed",phys,'Mean=',round(Mean,2),'StdDev=',round(SD,4)),'\n')
     Wetlands[Wetlands$phys == phys,]$Pu <- dnorm(Wetlands[Wetlands$phys == phys,]$theta,Mean, SD)
+    fileName = paste0('C:\\Users\\krodberg\\Desktop\\NotStressed_',phys,'_pdf.png')
+    plotPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean, SD, phys, "Not Stressed")
+    
   }
   
   #================================================================================================
@@ -251,6 +279,8 @@ for (phys in physVec) {
     Wetlands[Wetlands$phys == phys,]$Ppu /Wetlands[Wetlands$phys == phys,]$PpAll
   Wetlands[Wetlands$phys == phys,]$PsiS <- 
     Wetlands[Wetlands$phys == phys,]$Pps /Wetlands[Wetlands$phys == phys,]$PpAll
+  
+
 }
 
 write.csv(file='h:/Wetlands.csv',Wetlands)
@@ -504,6 +534,10 @@ longPolynom[longPolynom$Zeta <0,]$Zeta<- 0.000000001
 #              longPolynom$Zeta > 1 & longPolynom$delta <0 ,]$Zeta <- .99999999999999
 
 ggplot(data=longPolynom, aes(x=delta, y=Zeta, color=Category)) + 
+  theme(plot.title = element_text(size = 14, face = "bold"),
+        axis.title = element_text(size=12),
+        legend.title=element_text(size=12), 
+        legend.text=element_text(size=12)) +
   geom_line(size=2) +  
   xlab(expression(paste("Change in Hydrologic Index ", Delta, theta, " feet"))) +
   theme(legend.position="bottom") +
