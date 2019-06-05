@@ -59,7 +59,7 @@ names(Class1P80)[names(Class1P80)=='2006-2017_P80.x']<-"2006-2017_P80"
 names(Class1P80)
 
 makeQQplots <- function(oneTest, ranks, stress, phys) {
-  filename = paste0('QQplot',stress,phys,ranks, '.png')
+  filename = paste0('./QQplots/QQplot',stress,phys,ranks, '.png')
   png(filename)
   qqnorm(oneTest[,2],
          main= paste("Class 1 ",phys, " Wetlands",stress,'\n', ranks, '\n',
