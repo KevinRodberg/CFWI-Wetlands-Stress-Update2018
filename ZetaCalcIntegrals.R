@@ -149,11 +149,18 @@ for (phys in physVec) {
   allKnt <- nrow(thetas[thetas$phys== phys ,])
   
   #==================================================================================================
-  # Fs and Fu are fraction of stressed wetlands and unstressed wetlands		Equations: 10 & 11
+  # Fs and Fu are fraction of stressed wetlands and unstressed wetlands		Equations: 2 & 3
   #==================================================================================================
   thetas[thetas$phys==phys,]$Fs <- stressKnt/allKnt
   thetas[thetas$phys==phys,]$Fu <- UstressKnt/allKnt
 }
+
+# Fractions (Fu and Fs) from Class 2 are used as documented 
+thetas[thetas$phys=='Plain',]$Fs <- 39/101 
+thetas[thetas$phys=='Plain',]$Fu <- 62/101 
+thetas[thetas$phys=='Ridge',]$Fs <- 54/121 
+thetas[thetas$phys=='Ridge',]$Fu <- 67/121 
+
 #==================================================================================================
 #          phys   Urban       DisSim  SHA    sf_us  sf_su SFus  SFsu
 #          ------ ----------  ------  -----  -----  ----- ----- -----
@@ -216,54 +223,83 @@ plotPDF <- function (filename,wetLData, Mean,SD , phys, stress) {
   ggsave(filename=fileName,width=10,height=6.66,units="in",dpi=300)
   
 }
+
+plotComboPDF <- function (filename,wetLData, Mean,SD , Mean2, SD2 , phys) {
+  graphics.off()
+  subtitleString <-paste0("for ",phys," as a function of Hydrologic Index ")
+  ggplot(data=wetLData, aes(x=theta,colour=stress)) +    
+    xlab(expression(paste("Hydrologic Index ", theta, " feet"))) +
+    ylab("Probability Density") +
+    stat_function(fun=dnorm, args = list(mean=Mean, sd=SD),aes(colour='red'))+
+    stat_function(fun=dnorm, args = list(mean=Mean2, sd=SD2),aes(colour='green4'))+
+    scale_colour_manual(values = c("red", "green4"), labels = c("Stressed", "Not Stressed")) +
+    theme(legend.position="bottom",legend.title=element_blank()) +
+    # xlim(-10, 20) +
+    scale_x_continuous(breaks = c(seq(-10,20,2.5)), limits = c(-10,20)) +
+    # labs(title =expression(atop("Fitted Normal Distribution Probability Density Function" ,
+    #                             bquote(.(subtitleString)~ {Delta*theta},")"))))
+    labs(title ="Fitted Normal Distribution Probability Density Function",
+         subtitle= bquote(~ .(subtitleString) ~  theta))
+  ggsave(filename=fileName,width=10,height=6.66,units="in",dpi=300)
+  
+}
 Wetlands <-rbind(Plain,Ridge)
 
 #==================================================================================================
-# dnorm function returns probability from density function at each theta value  Equations: 12 & 13
+# dnorm function returns probability from density function at each theta value  Equations: 4 & 5
 #==================================================================================================
 for (phys in physVec) {
   if (phys == 'Plain') {
-    Mean <- max(thetas[thetas$Stress =="Stressed" & thetas$phys==phys,]$mean)
-    SD   <- max(thetas[thetas$Stress =="Stressed" & thetas$phys==phys,]$sd)
+    Mean_S <- max(thetas[thetas$Stress =="Stressed" & thetas$phys==phys,]$mean)
+    SD_S   <- max(thetas[thetas$Stress =="Stressed" & thetas$phys==phys,]$sd)
     # 2014 values: Mean <- 5.18 SD <- 1.75 vs 2019 values:
-    cat(paste("Stressed",phys,'Mean=',round(Mean,2),'StdDev=',round(SD,4)),'\n')
-    Wetlands[Wetlands$phys == phys,]$Ps <- dnorm(Wetlands[Wetlands$phys == phys,]$theta, Mean, SD)
-    fileName = paste0('C:\\Users\\krodberg\\Desktop\\Stressed_',phys,'_pdf.png')
-    plotPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean, SD, phys, "Stressed")
+    cat(paste("Stressed",phys,'Mean=',round(Mean_S,2),'StdDev=',round(SD_S,4)),'\n')
+    Wetlands[Wetlands$phys == phys,]$Ps <- dnorm(Wetlands[Wetlands$phys == phys,]$theta, Mean_S, SD_S)
     
-    Mean <- max(thetas[thetas$Stress =="Not Stressed" & thetas$phys==phys,]$mean)
-    SD   <- max(thetas[thetas$Stress =="Not Stressed" & thetas$phys==phys,]$sd)
+    fileName = paste0('C:\\Users\\krodberg\\Desktop\\Stressed_',phys,'_pdf.png')
+    plotPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean_S, SD_S, phys, "Stressed")
+    
+    Mean_N <- max(thetas[thetas$Stress =="Not Stressed" & thetas$phys==phys,]$mean)
+    SD_N   <- max(thetas[thetas$Stress =="Not Stressed" & thetas$phys==phys,]$sd)
     # 2014 values: Mean <- 2.73 SD <- 0.95 vs 2019 values:
-    cat(paste("Not Stressed",phys,'Mean=',round(Mean,2),'StdDev=',round(SD,4)),'\n')
-    Wetlands[Wetlands$phys == phys,]$Pu <- dnorm((Wetlands[Wetlands$phys == phys,]$theta), Mean, SD)
+    cat(paste("Not Stressed",phys,'Mean=',round(Mean_N,2),'StdDev=',round(SD_N,4)),'\n')
+    Wetlands[Wetlands$phys == phys,]$Pu <- dnorm((Wetlands[Wetlands$phys == phys,]$theta), Mean_N, SD_N)
     fileName = paste0('C:\\Users\\krodberg\\Desktop\\NotStressed_',phys,'_pdf.png')
-    plotPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean, SD, phys, "Not Stressed")
+    plotPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean_N, SD_N, phys, "Not Stressed")
+
+    fileName = paste0('C:\\Users\\krodberg\\Desktop\\',phys,'_pdf.png')
+    plotComboPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean_S, SD_S,Mean_N, SD_N, phys)
+    
     
   }
   else if (phys == 'Ridge')
   {
-    Mean <- max(thetas[thetas$Stress =="Stressed" & thetas$phys==phys,]$mean)
-    SD   <- max(thetas[thetas$Stress =="Stressed" & thetas$phys==phys,]$sd)
+    Mean_S <- max(thetas[thetas$Stress =="Stressed" & thetas$phys==phys,]$mean)
+    SD_S   <- max(thetas[thetas$Stress =="Stressed" & thetas$phys==phys,]$sd)
     # 2014 values: Mean <- 7.86  SD <- 2.55 vs 2019 values:
-    cat(paste("Stressed",phys,'Mean=',round(Mean,2),'StdDev=',round(SD,4)),'\n')
-    Wetlands[Wetlands$phys == phys,]$Ps <- dnorm(Wetlands[Wetlands$phys == phys,]$theta,Mean, SD)
+    cat(paste("Stressed",phys,'Mean=',round(Mean_S,2),'StdDev=',round(SD_S,4)),'\n')
+    Wetlands[Wetlands$phys == phys,]$Ps <- dnorm(Wetlands[Wetlands$phys == phys,]$theta,Mean_S, SD_S)
+
     fileName = paste0('C:\\Users\\krodberg\\Desktop\\Stressed_',phys,'_pdf.png')
-    plotPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean, SD, phys, "Stressed")
+    plotPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean_S, SD_S, phys, "Stressed")
     
-    Mean <- max(thetas[thetas$Stress =="Not Stressed" & thetas$phys==phys,]$mean)
-    SD   <- max(thetas[thetas$Stress =="Not Stressed" & thetas$phys==phys,]$sd)
+    Mean_N <- max(thetas[thetas$Stress =="Not Stressed" & thetas$phys==phys,]$mean)
+    SD_N   <- max(thetas[thetas$Stress =="Not Stressed" & thetas$phys==phys,]$sd)
     # 2014 values:  Mean <- 3.42  SD <- 1.57 vs 2019 values:
-    cat(paste("Not Stressed",phys,'Mean=',round(Mean,2),'StdDev=',round(SD,4)),'\n')
-    Wetlands[Wetlands$phys == phys,]$Pu <- dnorm(Wetlands[Wetlands$phys == phys,]$theta,Mean, SD)
+    cat(paste("Not Stressed",phys,'Mean=',round(Mean_N,2),'StdDev=',round(SD_N,4)),'\n')
+    Wetlands[Wetlands$phys == phys,]$Pu <- dnorm(Wetlands[Wetlands$phys == phys,]$theta,Mean_N, SD_N)
     fileName = paste0('C:\\Users\\krodberg\\Desktop\\NotStressed_',phys,'_pdf.png')
-    plotPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean, SD, phys, "Not Stressed")
+    plotPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean_N, SD_N, phys, "Not Stressed")
+    
+    fileName = paste0('C:\\Users\\krodberg\\Desktop\\',phys,'_pdf.png')
+    plotComboPDF(fileName,Wetlands[Wetlands$phys == phys,], Mean_S, SD_S,Mean_N, SD_N, phys)
     
   }
   
   #================================================================================================
   # Pps and Ppu are Population-weighted contributions of stress and unstress
   # wetlands to the total population probability density of all wetlands at 
-  # each wetland hydrologic index (theta)                                 Equations: 14 & 15
+  # each wetland hydrologic index (theta)                                 Equations: 6,7 & 8
   #================================================================================================
   Wetlands[Wetlands$phys == phys,]$Ppu <-
     Wetlands[Wetlands$phys == phys,]$Pu*max(thetas[thetas$phys==phys,]$Fu)
@@ -273,7 +309,7 @@ for (phys in physVec) {
   Wetlands[Wetlands$phys == phys,]$PpAll <-
     Wetlands[Wetlands$phys == phys,]$Ppu + Wetlands[Wetlands$phys == phys,]$Pps    
   #================================================================================================
-  # PsiU and PsiS Population-weighted Cumulative Probability             Equation 17 & 18
+  # PsiU and PsiS Population-weighted Cumulative Probability             Equation 9 & 10
   #================================================================================================
   Wetlands[Wetlands$phys == phys,]$PsiU <- 
     Wetlands[Wetlands$phys == phys,]$Ppu /Wetlands[Wetlands$phys == phys,]$PpAll
@@ -311,7 +347,7 @@ PsiVals <- function(type, status, hydIndex) {
 vPsiVals <- Vectorize(PsiVals)
 
 #----------------------------------------------------------------------------
-# Function used to calculate zetas 
+# Function used to calculate zetas   Equation 12, 13, 14,  & 15
 #----------------------------------------------------------------------------
 makeZetas <- function(phys,stress,deltas,thetaSeq) {
   z = matrix(NA,length(thetaSeq),1+length(deltas))
@@ -353,6 +389,29 @@ physVec = c('Ridge','Plain')
 stressVec = c('Not Stressed','Stressed')
 ix = 0
 
+#----------------------------------------------------------------------------
+# Plot stress probability curves for positive and negative theta (Psi u and Psi s)
+#----------------------------------------------------------------------------
+psiStress <-unname(unlist(vPsiVals("Plain","Stressed",vdf[,1])))
+psiNotStress <-1-psiStress
+PsiVals4Plot<-as.data.frame(rbind(cbind(vdf[,1],"PsiS",psiStress),cbind(vdf[,1],"PsiN",psiNotStress)))
+names(PsiVals4Plot)<- c('theta','variable','psiVal')
+PsiVals4Plot$theta<- as.numeric(as.character(PsiVals4Plot$theta))
+PsiVals4Plot$psiVal<- as.numeric(as.character(PsiVals4Plot$psiVal))
+my.labs <- list(bquote(psi[u]),bquote(psi[s]))
+ggplot(data=PsiVals4Plot[PsiVals4Plot$theta > -10 & PsiVals4Plot$theta < 10,], 
+       aes(x=theta, y=psiVal,color=variable)) +
+  theme(plot.title = element_text(size = 20, face = "bold"),
+        axis.title = element_text(size=16),
+        legend.title=element_text(size=16), 
+        legend.text=element_text(size=16)) +
+  geom_line(size=2) +
+  xlab(expression(paste("Hydrologic Index, ", theta, " (feet)"))) +
+  ylab(expression(paste(psi[u]," & ",psi[s], " (dimensionless)"))) +
+  scale_color_manual(labels=my.labs, values = c("darkgreen", "red")) +
+  theme(legend.title = element_blank()) +
+  ggtitle (expression(paste("Probability of a Randomly Selected Wetland Being Stressed, ",psi[s]," or Not Stressed, ",psi[u] )))
+
 plan(multiprocess)
 data <- listenv()
 #----------------------------------------------------------------------------
@@ -376,7 +435,7 @@ zetaMelt <-transform(zetaMelt, Ps = as.numeric(as.character(Ps)))
 zetaMelt <-transform(zetaMelt, Pu = as.numeric(as.character(Pu)))
 #----------------------------------------------------------------------------
 # calculate series of ittle zetas values for Big Zetas
-#   for population-weighted average probability of change in stress              Equation 26 & 27
+#   for population-weighted average probability of change in stress              Equation 16 & 17
 #----------------------------------------------------------------------------
 zetaMelt$ZetaSU <- NA
 zetaMelt[zetaMelt$stress == 'Stressed',]$ZetaSU<- thetaInterval*
@@ -482,56 +541,53 @@ levels(longPolynom$Category)[match("ZPPs",levels(longPolynom$Category))] <- "Pla
 theta = expression(theta)
 text4Title<-paste0("Population-weighted Average Probability of Change\n",
                    "as a Result of an Imposed Change in Hydrologic Index(",expression(theta),")")
-# longPolynom[longPolynom$Zeta < 0,]$Zeta <- 0
-# longPolynom[longPolynom$Zeta > 1,]$Zeta <- 1
+
 for (cat in levels(longPolynom$Category)){
-  if (length(which(longPolynom[longPolynom$Category == cat & longPolynom$delta <= 0.00 ,]$Zeta> .999))>0) {
+  if (length(which(longPolynom[longPolynom$Category == cat & 
+                               longPolynom$delta <= 0.00 ,]$Zeta> .999))>0) {
     cat(paste(cat, 'Zeta > .9999 \n'))
     longPolynom[longPolynom$Category == cat & 
                   longPolynom$delta <0.0 &
-                  longPolynom$delta <=  max(longPolynom[longPolynom$Category == cat & 
-                                                         longPolynom$Zeta > .999 & 
-                                                         longPolynom$delta <0,]$delta,na.rm = T)  ,]$Zeta <- .99999999999999
-    
-    
+                  longPolynom$delta <=  
+                  max(longPolynom[longPolynom$Category == cat & 
+                                    longPolynom$Zeta > .999 & 
+                                    longPolynom$delta <0,]$delta,na.rm = T)  ,]$Zeta <- .99999999999999
   }  
-  if (length(which(longPolynom[longPolynom$Category == cat & longPolynom$delta <= 0.00 ,]$Zeta < .00000001 ))>0) {
+  if (length(which(longPolynom[longPolynom$Category == cat &
+                               longPolynom$delta <= 0.00 ,]$Zeta < .00000001 ))>0) {
     cat(paste(cat, 'Zeta < .00000001 \n'))
     longPolynom[longPolynom$Category == cat & 
                   longPolynom$Zeta < .00000001 & 
                   longPolynom$delta <=0.0 &
-                  longPolynom$delta >=  min(longPolynom[longPolynom$Category == cat & 
-                                                          longPolynom$Zeta < .00000001 & 
-                                                          longPolynom$delta <=0.0,]$delta,na.rm = T)  ,]$Zeta <- .00000001  
+                  longPolynom$delta >=  
+                  min(longPolynom[longPolynom$Category == 
+                                    cat & longPolynom$Zeta < .00000001 & 
+                                    longPolynom$delta <=0.0,]$delta,na.rm = T)  ,]$Zeta <- .00000001  
   }
-  
-  if (length(which(longPolynom[longPolynom$Category == cat & longPolynom$delta >= 0.00 ,]$Zeta> .999))>0) {
+  if (length(which(longPolynom[longPolynom$Category == cat &
+                               longPolynom$delta >= 0.00 ,]$Zeta> .999))>0) {
     cat(paste(cat, 'Zeta > .9999 \n'))
     longPolynom[longPolynom$Category == cat & 
                   longPolynom$Zeta > .999 &
                   longPolynom$delta >= 0.0 &
-                  longPolynom$delta >  min(longPolynom[longPolynom$Category == cat & 
-                                                         longPolynom$Zeta > .999 & 
-                                                         longPolynom$delta >0,]$delta,na.rm = T)  ,]$Zeta <- .99999999999999
-    
-    
+                  longPolynom$delta >  
+                  min(longPolynom[longPolynom$Category == 
+                                    cat & longPolynom$Zeta > .999 & 
+                                    longPolynom$delta >0,]$delta,na.rm = T)  ,]$Zeta <- .99999999999999
   }  
-  if (length(which(longPolynom[longPolynom$Category == cat & longPolynom$delta >= 0.00 ,]$Zeta < .00000001 ))>0) {
+  if (length(which(longPolynom[longPolynom$Category == cat &
+                               longPolynom$delta >= 0.00 ,]$Zeta < .00000001 ))>0) {
     cat(paste(cat, 'Zeta < .00000001 \n'))
     longPolynom[longPolynom$Category == cat & 
                   longPolynom$Zeta < .00000001 & 
                   longPolynom$delta >=0.0 &
-                  longPolynom$delta <=  min(longPolynom[longPolynom$Category == cat & 
-                                                          longPolynom$Zeta < .00000001 & 
-                                                          longPolynom$delta >=0.0,]$delta,na.rm = T)  ,]$Zeta <- .00000001  
+                  longPolynom$delta <=  
+                  min(longPolynom[longPolynom$Category == 
+                                    cat & longPolynom$Zeta < .00000001 & 
+                                    longPolynom$delta >=0.0,]$delta,na.rm = T)  ,]$Zeta <- .00000001  
   }
-  
 }
-
 longPolynom[longPolynom$Zeta <0,]$Zeta<- 0.000000001
-# longPolynom[longPolynom$delta < max(longPolynom[longPolynom$Zeta > 1 &
-#                                                   longPolynom$delta <0,]$delta) & 
-#              longPolynom$Zeta > 1 & longPolynom$delta <0 ,]$Zeta <- .99999999999999
 
 ggplot(data=longPolynom, aes(x=delta, y=Zeta, color=Category)) + 
   theme(plot.title = element_text(size = 14, face = "bold"),

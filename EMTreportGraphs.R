@@ -9,9 +9,10 @@
 #   Script:   EMTreportGraphs.R 
 #   Purpose:  Uses data from previous runs of the following scripts:
 
-#   source('Y:/proj/CFWI_WetlandStress/Update2018/WetlandStressSFWMDsYr.R')
-#   source('Y:/proj/CFWI_WetlandStress/Update2018/WetlandStressSJRWMDsYr.R')
-#   source('Y:/proj/CFWI_WetlandStress/Update2018/WetlandStressSWFWMDsYr.R')
+  # source('Y:/proj/CFWI_WetlandStress/Update2018/WetlandStressSFWMDsYr.R')
+  # source('Y:/proj/CFWI_WetlandStress/Update2018/WetlandStressSJRWMDsYr.R')
+  # source('Y:/proj/CFWI_WetlandStress/Update2018/WetlandStressSWFWMDsYr.R')
+# Class1P80 <- read_csv("//ad.sfwmd.gov/dfsroot/data/wsd/SUP/proj/CFWI_WetlandStress/Update2018/Class1P80.csv")
 #             or use the Update2018.rdata 
 #             and plot figures for the EMT report
 #
@@ -30,11 +31,14 @@ new.pkgs <- list.of.pkgs[!(list.of.pkgs %in% installed.packages()[, "Package"])]
 if (length(new.pkgs)){ install.packages(new.pkgs) }
 for (pkg in list.of.pkgs){ library(pkg,character.only = TRUE) }
 
-p80idx=c(18,19,20,21)[3]
+p80idx=c(15,16,17,18,19,20,21,22,23,24,25,26)[10]
 dateStart=c(2007,2008,2009,2010)[3]
 dfList <- list(AllStations_SJ,AllStations_SW,AllStations_SF[,2:5])
-AllStations<- merge(x=do.call("rbind",dfList), 
-                    y=Class1P80[,c(1,3,6,7,12,16,p80idx)], 
+# AllStations<- merge(x=do.call("rbind",dfList),
+#                     y=Class1P80[,c(1,3,6,7,12,16,p80idx)],
+#                     by.x="STATION",by.y="STATION")
+AllStations<- merge(x=do.call("rbind",dfList),
+                    y=Class1P80[,c(1,2,4,5,10,14,p80idx)],
                     by.x="STATION",by.y="STATION")
 
 names(AllStations) <-  c("STATION",    "DATE",    "WLValue",    "approx",
@@ -59,8 +63,10 @@ plotTStheta <- function(fileName,AllStations,stress,phys){
 plotFreqtheta <- function(fileName,AllStations,stress,phys){
   graphics.off()
   stn = paste(stress,phys)
-  p <- ggplot(AllStations[AllStations$DATE > as.Date(paste0(dateStart,'-01-01')),], aes( (approx-RefEdge),colour=STATION)) + stat_ecdf(geom="step")+    
-    labs(title=stn,y = "") +
+  p <- ggplot(AllStations[AllStations$DATE > as.Date(paste0(dateStart,'-01-01')),], 
+              # aes( (approx-RefEdge),colour=STATION)) + stat_ecdf(geom="step")+    
+    aes( (approx-RefEdge))) + stat_ecdf(geom="step")+    
+  labs(title=stn,y = "") +
     theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
           legend.position ="bottom") 
   
@@ -70,7 +76,20 @@ plotFreqtheta <- function(fileName,AllStations,stress,phys){
 plotPDFtheta <- function(fileName,AllStations,stress,phys){
   graphics.off()
   stn = paste(stress,phys)
-  p <- ggplot(AllStations[AllStations$DATE > as.Date(paste0(dateStart,'-01-01')),], aes( (approx-RefEdge))) + 
+  p <- ggplot(AllStations[AllStations$DATE > as.Date(paste0(dateStart,'-01-01')),], 
+              aes( (approx-RefEdge))) + 
+    geom_density() +
+    labs(title=stn,y = "") +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
+          legend.position ="bottom") 
+  
+  ggsave(filename=fileName,width=10,height=6.66,units="in",dpi=300)
+}
+plotcomboPDFtheta <- function(fileName,AllStations,phys){
+  graphics.off()
+  stn = paste(stress,phys)
+  p <- ggplot(AllStations[AllStations$DATE > as.Date(paste0(dateStart,'-01-01')),], 
+              aes( (approx-RefEdge),colour=stress)) + 
     geom_density() +
     labs(title=stn,y = "") +
     theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
@@ -97,7 +116,7 @@ plotTSwl <- function(fileName,AllStations,stress,phys){
 #  p <- ggplot(data=AllStations, aes(x=DATE,y=approx,colour=STATION)) +    
   p <- ggplot(data=AllStations, aes(x=DATE)) +    
     geom_point(aes(y=WLValue,colour=STATION),na.rm=T,size=.6) +
-    labs(title=stn,y = "Water Level (stage in feet)") +
+    labs(title=stn,y = "Water Level Elevation  (feet NAVD88)") +
     scale_x_date(date_breaks = "12 month", date_labels =  "%m-%d-%Y")  +
     theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
           legend.position ="bottom") 
@@ -116,20 +135,22 @@ makeQQplots <- function(fileName,AllStations, stress, phys) {
 qqData <- unique(AllStations[,c(1,5,6,7,8,9,10)])
 for (phys in unique(AllStations$Phys)){
   for (stress in unique(AllStations$Status)){
-    # fileName = paste0('C:\\Users\\krodberg\\Desktop\\',stress,'_',phys,'_theta.png')
-    # plotTStheta(fileName,AllStations[AllStations$Status==stress &
-    #                                    AllStations$Phys==phys,],stress,phys)
-    # 
-    # fileName = paste0('C:\\Users\\krodberg\\Desktop\\',stress,'_',phys,'_wl.png')
-    # plotTSwl(fileName,AllStations[AllStations$Status==stress &
-    #                                 AllStations$Phys==phys,],stress,phys)
-    # 
+    fileName = paste0('C:\\Users\\krodberg\\Desktop\\',stress,'_',phys,'_theta.png')
+    plotTStheta(fileName,AllStations[AllStations$Status==stress &
+                                       AllStations$Phys==phys,],stress,phys)
+
+    fileName = paste0('C:\\Users\\krodberg\\Desktop\\',stress,'_',phys,'_wl.png')
+    plotTSwl(fileName,AllStations[AllStations$Status==stress &
+                                    AllStations$Phys==phys,],stress,phys)
+     
     # fileName = paste0('C:\\Users\\krodberg\\Desktop\\',stress,'_',phys,'_cfd.png')
     # plotFreqtheta(fileName,AllStations[AllStations$Status==stress &
     #                                      AllStations$Phys==phys,],stress,phys)
-    fileName = paste0('C:\\Users\\krodberg\\Desktop\\',stress,'_',phys,'_pdf.png')
-    plotPDFtheta(fileName,AllStations[AllStations$Status==stress &
-                                         AllStations$Phys==phys,],stress,phys)
+    # fileName = paste0('C:\\Users\\krodberg\\Desktop\\',stress,'_',phys,'_pdf.png')
+    # plotPDFtheta(fileName,AllStations[AllStations$Status==stress &
+    #                                     AllStations$Phys==phys,],stress,phys)
+    # fileName = paste0('C:\\Users\\krodberg\\Desktop\\',phys,'_pdf.png')
+    # plotcomboPDFtheta(fileName,AllStations[AllStations$Phys==phys,],phys)
     
     # 
     # fileName = paste0('C:\\Users\\krodberg\\Desktop\\',stress,'_',phys,'_cfdWL.png')
