@@ -112,7 +112,12 @@ for (yr in seq(start,end)){
   ich = paste0(yr,'-2017')
   qStations <- AllStations_SW[!is.na(AllStations_SW$approx) & 
                              AllStations_SW$DATE >= as.Date(paste0(yr,'-01-01')),]
-  QByYr<-as.data.table(qStations)[,as.list(quantile(approx,probs=c(.2, .5))), by=STATION]
+  
+  # Default R formulation of plotting position
+  # QByYr<-as.data.table(qStations)[,as.list(quantile(approx,probs=c(.2, .5))), by=STATION]
+  
+  # weibull formulation of plotting position
+  QByYr<-as.data.table(qStations)[,as.list(quantile(approx,probs=c(.2, .5),type=6)), by=STATION]
   
   names(QByYr)= c("STATION","P80","P50")
   QByYr$drange <- ich
